@@ -1,144 +1,42 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora Simples</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f0f0f0;
-            font-family: Arial, sans-serif;
-        }
-
-        .calculator {
-            border: 2px solid #ccc;
-            border-radius: 10px;
-            padding: 20px;
-            background-color: #333;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        #display {
-            width: 100%;
-            height: 50px;
-            background-color: #222;
-            color: white;
-            font-size: 2em;
-            text-align: right;
-            padding: 10px;
-            box-sizing: border-box;
-            border: none;
-            border-radius: 5px;
-            margin-bottom: 10px;
-        }
-
-        .buttons {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-        }
-
-        .btn {
-            height: 60px;
-            font-size: 1.5em;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-
-        .btn.number, .btn.decimal {
-            background-color: #666;
-            color: white;
-        }
-
-        .btn.operator {
-            background-color: #ff9500;
-            color: white;
-        }
-
-        .btn.clear {
-            background-color: #d9534f;
-            color: white;
-        }
-
-        .btn.equal {
-            background-color: #5cb85c;
-            color: white;
-            grid-column: span 2;
-        }
-        
-        .btn.backspace {
-            background-color: #6c757d;
-            color: white;
-        }
-
-        .btn:hover {
-            opacity: 0.9;
-        }
-    </style>
+    <title>Calculadora Digital</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div class="calculator">
-        <input type="text" id="display" disabled>
+        <div class="display" id="display">0</div>
         <div class="buttons">
-            <button class="btn clear">C</button>
-            <button class="btn backspace">←</button>
-            <button class="btn operator">/</button>
-            <button class="btn operator">*</button>
-            <button class="btn number">7</button>
-            <button class="btn number">8</button>
-            <button class="btn number">9</button>
-            <button class="btn operator">-</button>
-            <button class="btn number">4</button>
-            <button class="btn number">5</button>
-            <button class="btn number">6</button>
-            <button class="btn operator">+</button>
-            <button class="btn number">1</button>
-            <button class="btn number">2</button>
-            <button class="btn number">3</button>
-            <button class="btn decimal">.</button>
-            <button class="btn number">0</button>
-            <button class="btn equal">=</button>
+            <button class="btn operator" onclick="clearDisplay()">AC</button>
+            <button class="btn operator" onclick="deleteLast()">DEL</button>
+            <button class="btn operator" onclick="appendValue('%')">%</button>
+            <button class="btn operator" onclick="appendValue('/')">÷</button>
+
+            <button class="btn" onclick="appendValue('7')">7</button>
+            <button class="btn" onclick="appendValue('8')">8</button>
+            <button class="btn" onclick="appendValue('9')">9</button>
+            <button class="btn operator" onclick="appendValue('*')">×</button>
+
+            <button class="btn" onclick="appendValue('4')">4</button>
+            <button class="btn" onclick="appendValue('5')">5</button>
+            <button class="btn" onclick="appendValue('6')">6</button>
+            <button class="btn operator" onclick="appendValue('-')">−</button>
+
+            <button class="btn" onclick="appendValue('1')">1</button>
+            <button class="btn" onclick="appendValue('2')">2</button>
+            <button class="btn" onclick="appendValue('3')">3</button>
+            <button class="btn operator" onclick="appendValue('+')">+</button>
+
+            <button class="btn zero" onclick="appendValue('0')">0</button>
+            <button class="btn" onclick="appendValue('.')">.</button>
+            <button class="btn equals" onclick="calculateResult()">=</button>
         </div>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const display = document.getElementById('display');
-            const buttons = document.querySelectorAll('.btn');
-
-            buttons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const buttonText = button.textContent;
-
-                    if (button.classList.contains('number') || button.classList.contains('decimal')) {
-                        display.value += buttonText;
-                    } else if (button.classList.contains('operator')) {
-                        display.value += ` ${buttonText} `;
-                    } else if (button.classList.contains('clear')) {
-                        display.value = '';
-                    } else if (button.classList.contains('backspace')) {
-                        display.value = display.value.slice(0, -1);
-                    } else if (button.classList.contains('equal')) {
-                        try {
-                            // Substitui o 'x' por '*' para a função eval()
-                            const expression = display.value.replace(/×/g, '*').replace(/÷/g, '/');
-                            // Usa eval() para calcular o resultado. Cuidado com o uso em projetos maiores.
-                            display.value = eval(expression);
-                        } catch (e) {
-                            display.value = 'Erro';
-                        }
-                    }
-                });
-            });
-        });
-    </script>
-
+    <script src="script.js"></script>
 </body>
 </html>
