@@ -1,0 +1,96 @@
+/* Importa uma fonte do Google Fonts para um visual mais moderno */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
+/* Configurações globais */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* O container principal da calculadora */
+.calculator {
+    width: 320px;
+    background-color: #1a1a1a;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    color: white;
+}
+
+/* A tela onde os números e resultados aparecem */
+.display {
+    width: 100%;
+    height: 80px;
+    background-color: #2a2a2a;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    padding: 0 20px;
+    box-sizing: border-box; /* Garante que o padding não afete a largura total */
+    font-size: 2.5rem;
+    color: #fff;
+    text-align: right;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    overflow: hidden; /* Evita que o texto saia da tela */
+    word-wrap: break-word;
+}
+
+/* O container dos botões, usando CSS Grid para alinhamento perfeito */
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 colunas de tamanho igual */
+    gap: 10px; /* Espaçamento entre os botões */
+}
+
+/* Estilo padrão para todos os botões */
+.btn {
+    height: 65px;
+    border-radius: 15px;
+    border: none;
+    background-color: #333;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+/* Efeito ao passar o mouse sobre o botão */
+.btn:hover {
+    background-color: #444;
+}
+
+/* Efeito ao clicar no botão */
+.btn:active {
+    transform: scale(0.95);
+}
+
+/* Estilo específico para botões de operadores */
+.operator {
+    background-color: #ff9500; /* Laranja */
+    color: white;
+}
+
+.operator:hover {
+    background-color: #ffad33;
+}
+
+/* Estilo para o botão de igual */
+.equals {
+    background-color: #ff9500;
+    grid-column: span 1; /* Ocupa 1 coluna */
+}
+
+.equals:hover {
+    background-color: #ffad33;
+}
+
+/* Estilo para o botão zero, fazendo-o ocupar duas colunas */
+.zero {
+    grid-column: span 2;
+}
